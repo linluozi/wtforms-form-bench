@@ -1,0 +1,62 @@
+diff --git a/src/wtforms/fields/core.py b/src/wtforms/fields/core.py
+index 5206f07..5f5ac37 100644
+--- a/src/wtforms/fields/core.py
++++ b/src/wtforms/fields/core.py
+@@ -235,26 +235,49 @@ class Field:
+         :param form: The form the field belongs to.
+         :param extra_validators: A sequence of extra validators to run.
+         """
+-        self.errors = list(self.process_errors)
++        errors = self.errors = list(self.process_errors)
+         stop_validation = False
+ 
+-        # Check the type of extra_validators
+-        self.check_validators(extra_validators)
++        # Check the type of extra_validators (empty tuple is the common case)
++        if extra_validators:
++            self.check_validators(extra_validators)
+ 
+         # Call pre_validate
+         try:
+             self.pre_validate(form)
+         except StopValidation as e:
+             if e.args and e.args[0]:
+-                self.errors.append(e.args[0])
++                errors.append(e.args[0])
+             stop_validation = True
+         except ValidationError as e:
+-            self.errors.append(e.args[0])
++            errors.append(e.args[0])
+ 
+-        # Run validators
++        # Run validators.  The two chains are walked directly instead of
++        # building ``itertools.chain(...)`` and re-entering a helper for
++        # every field; the error/stop semantics are unchanged.
+         if not stop_validation:
+-            chain = itertools.chain(self.validators, extra_validators)
+-            stop_validation = self._run_validation_chain(form, chain)
++            append = errors.append
++            for validator in self.validators:
++                try:
++                    validator(form, self)
++                except StopValidation as e:
++                    if e.args and e.args[0]:
++                        append(e.args[0])
++                    stop_validation = True
++                    break
++                except ValidationError as e:
++                    append(e.args[0])
++            if not stop_validation and extra_validators:
++                for validator in extra_validators:
++                    try:
++                        validator(form, self)
++                    except StopValidation as e:
++                        if e.args and e.args[0]:
++                            append(e.args[0])
++                        stop_validation = True
++                        break
++                    except ValidationError as e:
++                        append(e.args[0])
+ 
+         # Call post_validate
+         try:

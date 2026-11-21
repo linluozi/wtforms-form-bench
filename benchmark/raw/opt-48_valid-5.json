@@ -1,0 +1,1 @@
+{"case": "48_valid", "n_fields": 48, "valid_payload": true, "sample": 5, "construct_s": 0.000466356985270977, "validate_s": 0.00010995659977197647, "total_s": 0.0005763135850429535, "valid_result": true, "formdata_entries": 48}

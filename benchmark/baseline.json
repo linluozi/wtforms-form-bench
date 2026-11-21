@@ -1,0 +1,77 @@
+{
+ "impl": "base",
+ "wtforms_file": "/tmp/basewt/src/wtforms/__init__.py",
+ "python": "3.12.3",
+ "platform": "Linux-6.8.0-124-generic-x86_64-with-glibc2.39",
+ "seed": 0,
+ "warmup": 3,
+ "samples": 7,
+ "cases": {
+  "8_valid": {
+   "n_fields": 8,
+   "valid_payload": true,
+   "construct_median_ms": 0.09531993418931961,
+   "validate_median_ms": 0.042730942368507385,
+   "total_median_ms": 0.13978127390146255,
+   "total_p25_ms": 0.1334911212325096,
+   "total_p75_ms": 0.15958119183778763,
+   "validate_share_pct": 30.569861881950043,
+   "total_rsd_pct": 24.27910362598245
+  },
+  "8_invalid": {
+   "n_fields": 8,
+   "valid_payload": false,
+   "construct_median_ms": 0.09424611926078796,
+   "validate_median_ms": 0.04194863140583038,
+   "total_median_ms": 0.13808812946081161,
+   "total_p25_ms": 0.1328885555267334,
+   "total_p75_ms": 0.14326069504022598,
+   "validate_share_pct": 30.37815891172245,
+   "total_rsd_pct": 33.30242166853124
+  },
+  "20_valid": {
+   "n_fields": 20,
+   "valid_payload": true,
+   "construct_median_ms": 0.20288117229938507,
+   "validate_median_ms": 0.06990134716033936,
+   "total_median_ms": 0.27682073414325714,
+   "total_p25_ms": 0.26990659534931183,
+   "total_p75_ms": 0.2971990033984184,
+   "validate_share_pct": 25.251485361701555,
+   "total_rsd_pct": 10.960388627233856
+  },
+  "20_invalid": {
+   "n_fields": 20,
+   "valid_payload": false,
+   "construct_median_ms": 0.20065810531377792,
+   "validate_median_ms": 0.07188506424427032,
+   "total_median_ms": 0.2718307077884674,
+   "total_p25_ms": 0.27043838053941727,
+   "total_p75_ms": 0.30250847339630127,
+   "validate_share_pct": 26.444791623840263,
+   "total_rsd_pct": 16.786891638045287
+  },
+  "48_valid": {
+   "n_fields": 48,
+   "valid_payload": true,
+   "construct_median_ms": 0.45883189886808395,
+   "validate_median_ms": 0.12714974582195282,
+   "total_median_ms": 0.5859816446900368,
+   "total_p25_ms": 0.5751308053731918,
+   "total_p75_ms": 0.634022057056427,
+   "validate_share_pct": 21.698588509408083,
+   "total_rsd_pct": 4.653853188427619
+  },
+  "48_invalid": {
+   "n_fields": 48,
+   "valid_payload": false,
+   "construct_median_ms": 0.47351978719234467,
+   "validate_median_ms": 0.1377798616886139,
+   "total_median_ms": 0.6254957988858223,
+   "total_p25_ms": 0.5802512168884277,
+   "total_p75_ms": 0.6396118551492691,
+   "validate_share_pct": 22.027304089657708,
+   "total_rsd_pct": 4.589075140794339
+  }
+ }
+}
